@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:renderer="renderer.*"
+				autoDrawBackground="true" creationComplete="itemrenderer1_creationCompleteHandler(event)" >
+	<fx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			
+			import mx.events.FlexEvent;
+			
+			import events.SelectListVideo;
+			
+			import model.Video;
+			
+			import util.PlayListModel;
+			
+			
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public function listVideoFlex_changeHandler(event:Event):void
+			{
+				var playList:PlayListModel = PlayListModel(data);
+				playList.currentPlay = listVideo.selectedItem as model.Video;
+				if(playList.currentPlay == null)
+					playList.currentPlay = model.Video( PlayListModel(data).listVideo.getItemAt(0));
+				dispatchEvent( new SelectListVideo(SelectListVideo.PLAY_NEXT_LIST_VIDEO,playList));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Group width="100%" height="100%">
+		<!--<s:Rect width="100%" height="100%">
+			<s:fill><s:SolidColor color="red" /></s:fill>
+		</s:Rect>-->
+	
+		<s:VGroup paddingTop="10" paddingLeft="20"   >
+			<s:FormHeading label="{PlayListModel(data).title}"/>
+			
+			<s:List id="listVideo" width="1050" height="140" allowMultipleSelection="true" borderVisible="false"
+					verticalScrollPolicy="off" change="listVideoFlex_changeHandler(event)"
+					dataProvider="{PlayListModel(data).listVideo}" itemRenderer="renderer.ListViewItemRenderer">
+				<s:layout>
+					<s:HorizontalLayout gap="30"/>
+				</s:layout>
+			</s:List>
+		</s:VGroup>
+		
+	</s:Group>
+	
+</s:ItemRenderer>

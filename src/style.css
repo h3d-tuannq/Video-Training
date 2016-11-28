@@ -1,0 +1,13 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+/* This is a TYPE SELECTOR demo */
+s|Button.nameButton{
+	skinClass: ClassReference("skins.MyButtonSkin");
+}
+
+/* This is a demo for state-based CSS class*/
+s|Button:over {
+	textDecoration:underline;
+}

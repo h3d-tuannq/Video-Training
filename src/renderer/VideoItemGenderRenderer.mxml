@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				autoDrawBackground="true" 
+				creationComplete="itemrenderer1_creationCompleteHandler(event)"
+				>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			import model.Video;
+			
+			[Bindable]
+			public var movie:Object;
+			
+			[Bindable]
+			public var nameToDisplay:Object;
+			
+			[Bindable]
+			public var describeToDisplay:Object;
+			
+			
+			[Bindable]
+			public var BgimgCls:Class;
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				//movie = new model.Video();
+				var listVideo:ArrayList = new ArrayList();
+				//movie = new model.Video("https://www.youtube.com/watch?v=YDobmucohqk","Desing Parten","Design pattern");
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=D2433xS0nEk","Flex","Part 5 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=E8tdcSvEZeY","Flex","Part 4 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=fAZmHUvH8AM","Flex","[Lập trình Flex] Day 1 - Part2 - Building a da"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=GH3f8Xa8L_Q","Flex","Part 3 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=RyNf5r65yXE","Flex","Part 1 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=sTN_4E0r0jc","Flex","[Lập trình Flex] Day1 - Part1 - Introduction"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=EDnqBNgwWTw","Flex","Yahoo Maps Part 3 (1 of 4): Grabbing the Custom Marker Class "));
+				
+				//referenceList = listVideo;
+				//videoPlayer.videoPlay = videoPl;
+				if(movie != null)
+					playVideoFromListView();
+				
+			}
+			
+			public function playVideoFromListView():void{
+				
+				swfLoader.unloadAndStop();
+				swfLoader.load("https://www.youtube.com/v/" + movie.id);
+				/*videoPlayer.nameToDisplay = videoSelected.name;
+				videoPlayer.describeToDisplay = videoSelected.des;*/
+				
+				swfLoader.visible = true;
+				imageDelete.visible = false;
+				
+			/*	if (videoSelected.nameType == Movie.TYPE_FLEX) 
+				{
+					checkBoxBtFlex.selected = true;
+					checkBoxBtDP.selected = false;
+					checkBoxBtPK.selected = false;
+					idList.dataProvider = listFlex;
+					listDisplay = listFlex;
+					
+					itemSelected = listFlex.getItemIndex(videoSelected);
+					idList.selectedIndex = itemSelected;*/
+					
+				}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Group id="group" height="450" width="740">
+		<s:BorderContainer width="{group.width}"  height="{group.height}" backgroundImage="{BgimgCls}" borderVisible="false"/>
+		<s:SWFLoader id="swfLoader" width="{group.width-32}"  height="{group.height-17}"/>
+		<s:Image id="imageDelete" width="{group.width}"  height="{group.height}" source="./image/Deleted.jpg" visible="true" />
+	</s:Group>
+	
+	
+</s:ItemRenderer>

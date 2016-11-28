@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true" creationComplete="limitLength_clickHandler()" >
+
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import model.Video;
+			[Bindable]
+			public var nameToDisplay:String;
+			
+			protected function limitLength_clickHandler():void
+			{
+				// TODO Auto-generated method stub
+				if (data.name.length > 30) 
+				{
+					nameToDisplay = String(data.name).substring(0, 30) + " ...";
+				}else
+				{
+					nameToDisplay = data.name;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Group>
+		<s:Rect width="100%" height="100%">
+			<s:fill><s:SolidColor color="#C0C0C0" /></s:fill>
+		</s:Rect>
+		<s:VGroup width="120" height="140" buttonMode="true">
+			<s:Image width="120" height="100" source="{model.Video(data).imageURL}" />
+			<s:Label fontSize="14" maxWidth="120" maxHeight="30" text="{nameToDisplay}" textDecoration.hovered="underline" color.hovered="#0000ff" buttonMode="true" />
+		</s:VGroup>
+	</s:Group>
+	
+</s:ItemRenderer>

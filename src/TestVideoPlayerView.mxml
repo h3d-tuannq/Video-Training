@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:views="views.*"
+			   xmlns:skin="skin.*"
+			   minWidth="955" minHeight="600">
+	<fx:Style source="style.css"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			import model.Video;
+			
+			
+			[Bindable]
+			public var listVideo:ArrayList;
+			
+			[Bindable]
+			public var videoPl:model.Video;
+				
+			
+			
+			
+			protected function application_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				listVideo = new ArrayList();
+				videoPl = new model.Video("https://www.youtube.com/watch?v=YDobmucohqk","Desing Parten","Design pattern");
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=D2433xS0nEk","Flex","Part 5 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=E8tdcSvEZeY","Flex","Part 4 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=fAZmHUvH8AM","Flex","[Lập trình Flex] Day 1 - Part2 - Building a da"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=GH3f8Xa8L_Q","Flex","Part 3 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=RyNf5r65yXE","Flex","Part 1 Building Over The Rhine Website in Adobe"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=sTN_4E0r0jc","Flex","[Lập trình Flex] Day1 - Part1 - Introduction"));
+				listVideo.addItem(new model.Video("https://www.youtube.com/watch?v=EDnqBNgwWTw","Flex","Yahoo Maps Part 3 (1 of 4): Grabbing the Custom Marker Class "));
+			
+			
+			//	videoPlayer.setData(videoPl,listVideo);
+			}
+			
+		]]>
+	</fx:Script>
+	<views:VideoModuleBase id="videoPlayer" 
+						   skinClass="skin.VideoModuleBaseSkin"
+						   />
+</s:Application>
